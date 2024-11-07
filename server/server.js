@@ -1,3 +1,4 @@
+const authRouter = require('./routes/authRoutes.js');
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
@@ -6,13 +7,12 @@ const app = express();
 const port = 5100;
 
 
-
 app.use(cors());
 
 app.use(cors({ origin: 'http://localhost:5173' }));
 
 app.get('/data/users.json', (req, res) => {
-    res.sendFile(__dirname + '/data/users.json');
+  res.sendFile(__dirname + '/data/users.json');
 });
 
 app.use(express.json())
@@ -23,6 +23,7 @@ app.use(express.urlencoded({ extended: true }))
 
 app.use('/data', express.static(path.join(__dirname, 'data')));
 
+app.use(authRouter);
 
 // Middleware pour accepter les données JSON
 app.use(express.json());
@@ -35,7 +36,7 @@ app.post('/login', (req, res) => {
       const data = fs.readFileSync(path.join(__dirname, 'data', 'users.json'), 'utf8');
       
       const users = JSON.parse(data).users;
-      
+
       const user = users.find(u => u.email === email && u.password === password);
 
       if (user) {

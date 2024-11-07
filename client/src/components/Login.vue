@@ -26,7 +26,7 @@ async function fetchUser() {
             })
         })
     } catch (error) {
-        // console.error("Erreur lors de la récupération des données:", error);
+        console.error("Erreur lors de la récupération des données:", error);
         // alert("Erreur lors de la récupération des utilisateurs.");
     }
 }
