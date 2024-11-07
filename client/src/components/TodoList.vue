@@ -43,7 +43,7 @@ function miseAJour(e) {
 </script>
 
 <template>
-  <div class="container">
+  <div class="cont">
     <TodoHeader @add="ajoutTache" :item="updateItem" @update="miseAJour" />
     <p>{{ msgchild }}</p>
 
@@ -53,7 +53,9 @@ function miseAJour(e) {
   </div>
 </template>
 <style>
-.container {
+.cont {
   display: block;
+  width: 80%;
+  height: 600px;
 }
 </style>

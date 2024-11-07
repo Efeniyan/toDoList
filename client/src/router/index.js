@@ -21,15 +21,16 @@ const router = createRouter({
   routes,
 });
 
-
+// Gestion de la redirection si non authentifié
 router.beforeEach((to, from, next) => {
-  if (to.matched.some(record => record.meta.requiresAuth) && !isAuthenticated) {
-    next('/'); 
+  const isAuthenticated = false;  
+  
+  if (to.meta.requiresAuth && !isAuthenticated) {
+    next('/');
   } else {
-    next(); 
+    next();
   }
 });
-
 
 export function setAuthentication(status) {
   isAuthenticated = status;

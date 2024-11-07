@@ -1,11 +1,11 @@
 {
   "users": [
       {
-          "email": "user@example.com",
+          "email": "user@gmail.com",
           "password": "password123"
       },
       {
-          "email": "anotheruser@example.com",
+          "email": "anotheruser@gmail.com",
           "password": "password456"
       }
   ]

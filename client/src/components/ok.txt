@@ -1,0 +1,1 @@
+autre maniere de faire ceci "const data = fs.readFileSync(path.join(__dirname, 'data', 'users.json'), 'utf8');"
