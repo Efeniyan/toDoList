@@ -10,22 +10,44 @@ const data = ref([])  // On va remplir ceci avec les utilisateurs
 
 // Fonction pour récupérer les utilisateurs
 async function fetchUser() {
-  const url = "http://localhost:5100/data/users.json";  
+    const url = "http://localhost:5100/sign-in";
 
-  console.log("Début de la requête fetch pour récupérer les utilisateurs...");
 
-  try {
-    
-    const response = await fetch(url);
-    console.log("Requête fetch réussie, réponse reçue.");
-    
-    const result = await response.json();
-    console.log("Données récupérées:", result);
-  } catch (error) {
-    console.error("Erreur lors de la récupération des données:", error);
-    alert("Erreur lors de la récupération des utilisateurs.");
-  }
+    try {
+        const response = await fetch(url, {
+            method: "POST",
+            headers: {
+                "content-type": "application/json",
+
+            },
+            body: JSON.stringify({
+                email: userEmail.value,
+                password: password.value,
+            })
+        })
+    } catch (error) {
+        // console.error("Erreur lors de la récupération des données:", error);
+        // alert("Erreur lors de la récupération des utilisateurs.");
+    }
 }
+
+// async function fetchUser() {
+//   const url = "http://localhost:5100/data/users.json";  
+
+//   console.log("Début de la requête fetch pour récupérer les utilisateurs...");
+
+//   try {
+
+//     const response = await fetch(url);
+//     console.log("Requête fetch réussie, réponse reçue.");
+
+//     const result = await response.json();
+//     console.log("Données récupérées:", result);
+//   } catch (error) {
+//     console.error("Erreur lors de la récupération des données:", error);
+//     alert("Erreur lors de la récupération des utilisateurs.");
+//   }
+// }
 
 
 
@@ -35,8 +57,8 @@ function submit() {
 }
 
 onMounted(() => {
-  console.log("Composant monté, lancement de fetchUser.");
-  fetchUser();
+    console.log("Composant monté, lancement de fetchUser.");
+    fetchUser();
 });
 </script>
 
@@ -60,7 +82,8 @@ onMounted(() => {
                 <a href="#">Mot de passe oublier?</a>
             </div>
             <div class="sign-up">
-                <p>Vous êtes nouveau ici? <RouterLink to="/signup">S'inscrire</RouterLink></p>
+                <p>Vous êtes nouveau ici? <RouterLink to="/signup">S'inscrire</RouterLink>
+                </p>
             </div>
         </div>
     </div>
@@ -145,4 +168,4 @@ button {
     inline-size: 1em;
     vertical-align: middle;
 }
-</style> 
+</style>
